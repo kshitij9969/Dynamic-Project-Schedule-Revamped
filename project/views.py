@@ -217,7 +217,7 @@ class ManageProjectDetailsView(APIView):
     Handles the details of a project
     """
 
-    def get(self, request, format=None):
+    def post(self, request, format=None):
         try:
             start_date = request.data['start_date']
             end_date = request.data['end_date']

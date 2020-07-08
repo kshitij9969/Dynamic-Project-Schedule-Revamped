@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d2d7a65-81b8-4523-b87f-0044ae1f13af" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/project_schedule/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_schedule/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/project/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
