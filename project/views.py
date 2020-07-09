@@ -281,25 +281,25 @@ class ManageProjectDetailsView(APIView):
 
                 project_obj = project_obj.filter(date=date).first()
 
-                project_obj.analysis = (each['analysis'])
+                project_obj.analysis = (each['analysis'] == "true")
                 project_obj.analysis_text = each['analysis_text']
 
-                project_obj.cut = (each['cut'])
+                project_obj.cut = (each['cut'] == "true")
                 project_obj.cut_text = each['cut_text']
 
-                project_obj.code_merge = bool(each['code_merge'])
+                project_obj.code_merge = (each['code_merge'] == "true")
                 project_obj.code_merge_text = each['code_merge_text']
 
-                project_obj.ST = bool(each['ST'])
+                project_obj.ST = (each['ST'] == "true")
                 project_obj.ST_text = each['ST_text']
 
-                project_obj.UAT = bool(each['UAT'])
+                project_obj.UAT = (each['UAT'] == "true")
                 project_obj.UAT_text = each['UAT_text']
 
-                project_obj.implementation = bool(each['implementation'])
+                project_obj.implementation = (each['implementation'] == "true")
                 project_obj.implementation_text = each['implementation_text']
 
-                project_obj.PIS = bool(each['PIS'])
+                project_obj.PIS = (each['PIS'] == "true")
                 project_obj.PIS_text = each['PIS_text']
 
                 project_obj.save()
