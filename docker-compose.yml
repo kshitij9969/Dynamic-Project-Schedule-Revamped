@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+  dpsa:
+    build:
+      context: .
+    ports:
+    - "8000:8000"
+    volumes:
+    - ./DynamicProjectSchedulingApp:/DynamicProjectSchedulingApp
+    command: >
+     sh -c "python manage.py wait_for_db
+            python manage.py makemigrations &&
+            python manage.py migrate &&
+            python manage.py runserver 0.0.0.0:8000"
+
+    environment:
+      - DB_HOST=db
+      - DB_NAME=DynamicProjectSchedulingApp
+      - DB_USER=postgres
+      - DB_PASS=0d7d384d-596d-4165-a12a-0a12794e1bb7
+
+    depends_on:
+      - db
+
+  db:
+    image: postgres:10-alpine
+    environment:
+      - POSTGRES_DB=DynamicProjectSchedulingApp
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=0d7d384d-596d-4165-a12a-0a12794e1bb7
+
+
