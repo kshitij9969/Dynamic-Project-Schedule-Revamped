@@ -93,9 +93,10 @@ class UserManager(BaseUserManager):
     Manager model for user
     """
     def create_user(self, full_name, nick_name,
-                         email, password, dob, *args, profile_picture=None, **kwargs):
+                         email, password, *args, profile_picture=None, **kwargs):
         """
         function to create user
+        :param dob:
         :param profile_picture: Profile picture of the user
         :param first_name: First name of user
         :param last_name: Last name of user
@@ -104,20 +105,19 @@ class UserManager(BaseUserManager):
         :param password: password(hashed)
         :return: User object
         """
-        if all([full_name, nick_name, email, dob]):
-            email = self.normalize_email(email)
-            user = self.model(profile_picture=profile_picture, full_name=full_name,
-                              nick_name=nick_name, email=email,
-                              dob=dob, *args, **kwargs)
-            user.set_password(password)
-            user.save(using=self._db)
-
-            return user
-        else:
+        if not all([full_name, nick_name, email]):
             raise ValueError("Fields missing!")
 
+        email = self.normalize_email(email)
+        user = self.model(profile_picture=profile_picture, full_name=full_name,
+                          nick_name=nick_name, email=email, *args, **kwargs)
+        user.set_password(password)
+        user.save(using=self._db)
+
+        return user
+
     def create_superuser(self, full_name, nick_name,
-                         email, password, dob, *args, profile_picture=None, **kwargs):
+                         email, password, *args, profile_picture=None, **kwargs):
         """
         Function to create superuser
         :param profile_picture: Profile picture of the user
@@ -131,7 +131,7 @@ class UserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.create_user(profile_picture=profile_picture,
                                 full_name=full_name, nick_name=nick_name, email=email,
-                                password=password, dob=dob, *args, **kwargs)
+                                password=password, *args, **kwargs)
         user.is_superuser = True
         user.save(using=self._db)
 
@@ -150,8 +150,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(max_length=200, unique=True, null=False)
     full_name = models.CharField(max_length=100, unique=False, null=False)
     nick_name = models.CharField(max_length=50, unique=False, null=True)
-    dob = models.DateField(null=False, blank=False)
-
+    creation_date = models.DateField(auto_now_add=True, null=True, blank=False)
+    account_update_date = models.DateField(auto_now=True, null=True, blank=True)
     """
     Permission information
     """
@@ -167,7 +167,51 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
 
 
-class OrganizationAccount(models.Model):
+class OrganisationAccountManager(models.Manager):
+    """
+    Manager class for OrganisationAccount
+    """
+    def create_org_account(self, user_account, industry, country_code,
+                           contact_no, country, province_state, city,
+                           address_line_one, address_line_two=None,
+                           address_line_three=None,
+                           *args, **kwargs):
+        """
+        Creates and returns OrganisationAccount object
+        :param user_account: user account to which
+                             organisation account is linked
+        :param industry: industry
+        :param country_code: country code(+91, +1, etc.)
+        :param contact_no: contact number
+        :param address_line_one: address line one
+        :param address_line_two: address line two
+        :param address_line_three: address line three
+        :param country: country
+        :param province_state: State/Province(Maharashtra, M.P. etc.)
+        :param city: City (Mumbai, N.Y. etc.)
+        :param args: extra args
+        :param kwargs: extra kwargs
+        :return: OrganisationAccount object
+        """
+        if user_account is None:
+            raise ValueError('User account must be created before '
+                             'creating an organisation account!')
+        org_acc = self.model(user_account=user_account,
+                                      industry=industry,
+                                      country_code=country_code,
+                                      contact_no=contact_no,
+                                      address_line_one=address_line_one,
+                                      address_line_two=address_line_two,
+                                      address_line_three=address_line_three,
+                                      country=country, province_state=province_state,
+                                      city=city,
+                                    *args, **kwargs)
+        org_acc.save(using=self._db)
+
+        return org_acc
+
+
+class OrganisationAccount(models.Model):
     """
     Model for handling Organization Account
     """
@@ -192,32 +236,98 @@ class OrganizationAccount(models.Model):
     """
     account_verified = models.BooleanField(default=True)  # Change this is to default=False
 
+    """
+    Assign a manager
+    """
+    objects = OrganisationAccountManager()
 
-class ManagerAccount(User):
+
+class ManagerAccountManager(models.Manager):
+    """
+    Manager for ManagerAccount model
+    """
+    def create_manager_account(self, user_account, employee_id, belongs_to):
+        """
+        Creates and returns ManagerAccount object
+        :param user_account: user account to which manager account is linked
+        :param employee_id: employee_id of manager
+        :param belongs_to: organisation to which the ManagerAccount belongs
+        :return: ManagerAccount object
+        """
+        if not all([user_account, belongs_to, employee_id]):
+            raise ValueError('Create user account, organisation account and'
+                             ' provide employee id to create manager account')
+        manager_acc = self.model(user_account=user_account,
+                                     employee_id=employee_id,
+                                     belongs_to=belongs_to)
+
+        manager_acc.save(using=self._db)
+
+        return manager_acc
+
+
+class ManagerAccount(models.Model):
     """
     Model for handling Manager Account
     """
     """
     Link the User model(for authentication)
     """
-    user_account = models.OneToOneField(User, on_delete=models.CASCADE, parent_link=True)
+    user_account = models.OneToOneField(User, on_delete=models.CASCADE)
 
     employee_id = models.CharField(max_length=10, unique=True, null=False)
-    belongs_to = models.ForeignKey(OrganizationAccount,
+    belongs_to = models.ForeignKey(OrganisationAccount,
                                    on_delete=models.DO_NOTHING, null=False)
 
+    objects = ManagerAccountManager()
 
-class AssociateAccount(User):
+
+class AssociateAccountManager(models.Manager):
+    """
+    Manager for managing AssociateAccount model
+    """
+    def create_associate_account(self, user_account, employee_id,
+                                 reports_to, belongs_to):
+        """
+        Creates and returns AssociateAccount object
+        :param user_account: user account to which AssociateAccount will be linked
+        :param employee_id: employee id of the user
+        :param reports_to: manager to whom the associate reports(can be null)
+        :param belongs_to: organisation to which the associate belongs(cannot be null)
+        :return: AssociateAccount object
+        """
+        if not all([user_account, employee_id, belongs_to]):
+            raise ValueError('Make sure a user account, an employee id, and '
+                             'organisation is created before creating associate account')
+
+        assoc_acc = AssociateAccount(user_account=user_account, employee_id=employee_id,
+                                     reports_to=reports_to, belongs_to=belongs_to)
+        assoc_acc.save(using=self._db)
+
+        return assoc_acc
+
+    def get_free_associate(self):
+        """
+        Returns a list of free associate objects.
+        Associates not allocated to a manager
+        :return: List object
+        """
+        return self.filter(user_account=None)
+
+
+class AssociateAccount(models.Model):
     """
     Model for handling Associate Account
     """
     """
     Link the User model(for authentication)
     """
-    user_account = models.OneToOneField(User, on_delete=models.CASCADE, parent_link=True)
+    user_account = models.OneToOneField(User, on_delete=models.CASCADE)
 
     employee_id = models.CharField(max_length=10, unique=True, null=False)
     reports_to = models.ForeignKey(ManagerAccount, on_delete=models.DO_NOTHING)
-    belongs_to = models.ForeignKey(OrganizationAccount,
+    belongs_to = models.ForeignKey(OrganisationAccount,
                                    on_delete=models.DO_NOTHING, null=False)
+
+    objects = AssociateAccountManager()
 
