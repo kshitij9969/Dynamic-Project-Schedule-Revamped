@@ -196,6 +196,10 @@ class OrganisationAccountManager(models.Manager):
         if user_account is None:
             raise ValueError('User account must be created before '
                              'creating an organisation account!')
+        if not all([industry, country, contact_no, country, province_state,
+                   city, address_line_one]):
+            raise ValueError("Mandatory fields missing!")
+
         org_acc = self.model(user_account=user_account,
                                       industry=industry,
                                       country_code=country_code,
@@ -223,7 +227,7 @@ class OrganisationAccount(models.Model):
     Basic information
     """
     industry = models.CharField(max_length=50, null=False, blank=False)  # choices in a drop down
-    country_code = models.CharField(max_length=5, null=False, blank=False)
+    country_code = models.CharField(max_length=10, null=False, blank=False)
     contact_no = models.CharField(max_length=30, null=False, blank=False)
     address_line_one = models.CharField(max_length=30, null=False, blank=False)
     address_line_two = models.CharField(max_length=30, null=True, blank=True)
@@ -296,7 +300,7 @@ class AssociateAccountManager(models.Manager):
         :param belongs_to: organisation to which the associate belongs(cannot be null)
         :return: AssociateAccount object
         """
-        if not all([user_account, employee_id, belongs_to]):
+        if not all([user_account, employee_id, reports_to, belongs_to]):
             raise ValueError('Make sure a user account, an employee id, and '
                              'organisation is created before creating associate account')
 
@@ -305,14 +309,6 @@ class AssociateAccountManager(models.Manager):
         assoc_acc.save(using=self._db)
 
         return assoc_acc
-
-    def get_free_associate(self):
-        """
-        Returns a list of free associate objects.
-        Associates not allocated to a manager
-        :return: List object
-        """
-        return self.filter(user_account=None)
 
 
 class AssociateAccount(models.Model):

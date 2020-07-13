@@ -390,8 +390,73 @@ class AssociateAccountModelTest(TestCase):
     """
     Class for testing AssociateAccount model
     """
-    pass
+    def test_associate_account_creation_is_successful(self):
+        """
+        Test that an associate account can be successfully created
+        :return: None
+        """
+        user_account = sample_user()
+        org_account = sample_organisation()
+        manager_account = sample_manager()
+        employee_id = get_sample_employee_id()
 
+        assoc_account = models.AssociateAccount.objects.create_associate_account(
+            user_account=user_account,
+            belongs_to=org_account,
+            reports_to=manager_account,
+            employee_id=employee_id
+        )
 
+        self.assertEqual(assoc_account.user_account, user_account)
+        self.assertEqual(assoc_account.belongs_to, org_account)
+        self.assertEqual(assoc_account.reports_to, manager_account)
 
+    def test_new_associate_account_without_user_account_is_unsuccessful(self):
+        """
+        Test that a new associate account without a user account is unsuccessful
+        :return: None
+        """
+        with self.assertRaises(ValueError):
+            org_account = sample_organisation()
+            manager_account = sample_manager()
+            employee_id = get_sample_employee_id()
+            models.AssociateAccount.objects.create_associate_account(
+                user_account=None,
+                belongs_to=org_account,
+                reports_to=manager_account,
+                employee_id=employee_id
+            )
 
+    def test_new_associate_account_without_organisation_account_is_unsuccessful(self):
+        """
+        Test that a new associate account without an organisation is unsuccessful
+        :return: None
+        """
+        with self.assertRaises(ValueError):
+            user_account = sample_user()
+            manager_account = sample_manager()
+            employee_id = get_sample_employee_id()
+
+            models.AssociateAccount.objects.create_associate_account(
+                user_account=user_account,
+                belongs_to=None,
+                reports_to=manager_account,
+                employee_id=employee_id
+            )
+
+    def test_new_associate_account_without_manager_account_is_unsuccessful(self):
+        """
+        Test that a new associate account without a manager account is unsuccessful
+        :return: None
+        """
+        with self.assertRaises(ValueError):
+            user_account = sample_user()
+            org_account = sample_organisation()
+            employee_id = get_sample_employee_id()
+
+            models.AssociateAccount.objects.create_associate_account(
+                user_account=user_account,
+                belongs_to=org_account,
+                reports_to=None,
+                employee_id=employee_id
+            )

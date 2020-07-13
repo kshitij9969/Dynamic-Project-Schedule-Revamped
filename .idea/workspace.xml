@@ -3,11 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="4d2d7a65-81b8-4523-b87f-0044ae1f13af" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/migrations/0001_initial.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/migrations/__init__.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/test/test_user_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/test/test_user_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/test/test_user_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/test/test_model.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,9 +67,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="524" y="374" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1594363281501" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1594387798680">
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1594623158366">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1594387798680" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1594623158366" />
   </component>
 </project>
