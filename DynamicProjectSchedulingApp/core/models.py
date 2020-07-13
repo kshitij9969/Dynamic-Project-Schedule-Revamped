@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser,
                                         PermissionsMixin)
 
+import uuid
 
 # class ProjectMetaData(models.Model):
 #     """
@@ -92,7 +93,7 @@ class UserManager(BaseUserManager):
     """
     Manager model for user
     """
-    def create_user(self, full_name, nick_name,
+    def create_user(self, username, full_name, nick_name,
                          email, password, *args, profile_picture=None, **kwargs):
         """
         function to create user
@@ -105,18 +106,19 @@ class UserManager(BaseUserManager):
         :param password: password(hashed)
         :return: User object
         """
-        if not all([full_name, nick_name, email]):
+        if not all([username, full_name, nick_name, email]):
             raise ValueError("Fields missing!")
 
         email = self.normalize_email(email)
-        user = self.model(profile_picture=profile_picture, full_name=full_name,
+        user = self.model(username=username,
+                          profile_picture=profile_picture, full_name=full_name,
                           nick_name=nick_name, email=email, *args, **kwargs)
         user.set_password(password)
         user.save(using=self._db)
 
         return user
 
-    def create_superuser(self, full_name, nick_name,
+    def create_superuser(self, username, full_name, nick_name,
                          email, password, *args, profile_picture=None, **kwargs):
         """
         Function to create superuser
@@ -129,7 +131,8 @@ class UserManager(BaseUserManager):
         :return: User object
         """
         email = self.normalize_email(email)
-        user = self.create_user(profile_picture=profile_picture,
+        user = self.create_user(username=username,
+                                profile_picture=profile_picture,
                                 full_name=full_name, nick_name=nick_name, email=email,
                                 password=password, *args, **kwargs)
         user.is_superuser = True
@@ -147,10 +150,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     """
     profile_picture = models.ImageField(upload_to=rename_profile_picture,
                                         null=True, blank=True, default='')
-    email = models.EmailField(max_length=200, unique=True, null=False)
+    username = models.CharField(max_length=100, default=uuid.uuid4(), unique=True, null=False)
+    email = models.EmailField(max_length=200, unique=False, null=False)
     full_name = models.CharField(max_length=100, unique=False, null=False)
     nick_name = models.CharField(max_length=50, unique=False, null=True)
-    creation_date = models.DateField(auto_now_add=True, null=True, blank=False)
+    creation_date = models.DateField(auto_now_add=True, null=True, blank=True)
     account_update_date = models.DateField(auto_now=True, null=True, blank=True)
     """
     Permission information
@@ -164,7 +168,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'username'
 
 
 class OrganisationAccountManager(models.Manager):
@@ -326,4 +330,3 @@ class AssociateAccount(models.Model):
                                    on_delete=models.DO_NOTHING, null=False)
 
     objects = AssociateAccountManager()
-

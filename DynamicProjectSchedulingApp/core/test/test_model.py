@@ -33,7 +33,7 @@ def sample_user(email=fake.company_email(), password=uuid.uuid4(),
     :param nick_name: last name of user
     :return: User object
     """
-    return get_user_model().objects.create_user(email=email, password=password,
+    return get_user_model().objects.create_user(username=uuid.uuid4(),email=email, password=password,
                                                 full_name=full_name, nick_name=nick_name
                                                 )
 
@@ -113,7 +113,7 @@ class UserModelTest(TestCase):
         password = uuid.uuid4()
         full_name = fake.name()
         nick_name = fake.name()
-        user = get_user_model().objects.create_user(
+        user = get_user_model().objects.create_user(username=uuid.uuid4(),
             email=email, password=password, full_name=full_name,
             nick_name=nick_name)
 
@@ -136,6 +136,7 @@ class UserModelTest(TestCase):
         full_name = fake.name()
         nick_name = fake.name()
         user = get_user_model().objects.create_user(
+            username=uuid.uuid4(),
             email=email, password=password, full_name=full_name,
             nick_name=nick_name)
 
@@ -148,6 +149,7 @@ class UserModelTest(TestCase):
         """
         with self.assertRaises(ValueError):
             get_user_model().objects.create_user(
+                username=uuid.uuid4(),
                 email=None,
                 password=uuid.uuid4(),
                 full_name=fake.name(),
@@ -161,6 +163,7 @@ class UserModelTest(TestCase):
         """
         with self.assertRaises(ValueError):
             get_user_model().objects.create_user(
+                username=uuid.uuid4(),
                 email=fake.company_email(),
                 password=uuid.uuid4(),
                 full_name=None,
@@ -181,6 +184,7 @@ class UserModelTest(TestCase):
         full_name = fake.name()
         nick_name = fake.name()
         user = get_user_model().objects.create_superuser(
+            username=uuid.uuid4(),
             email=email, password=password, full_name=full_name,
             nick_name=nick_name)
 
@@ -344,6 +348,7 @@ class ManagerAccountModelTest(TestCase):
         """
         with self.assertRaises(ValueError):
             user_org_account = get_user_model().objects.create_user(
+                username=uuid.uuid4(),
                 email=fake.email(), password=uuid.uuid4(),
                 full_name=fake.name(), nick_name=fake.name()
             )
