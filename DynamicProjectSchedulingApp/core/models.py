@@ -1,8 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import (BaseUserManager, AbstractBaseUser,
-                                        PermissionsMixin)
+                                        PermissionsMixin, Permission)
 
 import uuid
+
+from user import user_permission
+
+
+def get_permissions(permission_list):
+    """
+    Fetches Permission objects using the give permission_list
+    :param permission_list: permission list
+    :return: List object
+    """
+    return [Permission.objects.filter(codename=permission).first() for permission in permission_list]
+
 
 # class ProjectMetaData(models.Model):
 #     """
@@ -170,6 +182,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'username'
 
+    def __str__(self):
+        """
+        String representation of User object
+        :return: String object
+        """
+        return f"full_name: {self.full_name}, email: {self.email}"
+
 
 class OrganisationAccountManager(models.Manager):
     """
@@ -215,6 +234,20 @@ class OrganisationAccountManager(models.Manager):
                                       city=city,
                                     *args, **kwargs)
         org_acc.save(using=self._db)
+        """
+        Add permissions
+        """
+        permissions_granted = user_permission.ORGANISATION_CRUD_PERMISSIONS + \
+                              user_permission.MANAGER_CRUD_PERMISSIONS + \
+                              user_permission.ASSOCIATE_CRUD_PERMISSIONS + \
+                              user_permission.USER_CHANGE_PERMISSIONS
+
+        user = org_acc.user_account
+        for permission in get_permissions(permissions_granted):
+            user.user_permissions.add(permission)
+
+        user.refresh_from_db()
+        org_acc.refresh_from_db()
 
         return org_acc
 
@@ -271,6 +304,17 @@ class ManagerAccountManager(models.Manager):
 
         manager_acc.save(using=self._db)
 
+        permissions_granted = user_permission.ASSOCIATE_CRUD_PERMISSIONS + \
+                              user_permission.MANAGER_CRUD_PERMISSIONS + \
+                              user_permission.USER_CHANGE_PERMISSIONS
+
+        user = manager_acc.user_account
+
+        for permission in get_permissions(permissions_granted):
+            user.user_permissions.add(permission)
+
+        user.refresh_from_db()
+
         return manager_acc
 
 
@@ -311,6 +355,16 @@ class AssociateAccountManager(models.Manager):
         assoc_acc = AssociateAccount(user_account=user_account, employee_id=employee_id,
                                      reports_to=reports_to, belongs_to=belongs_to)
         assoc_acc.save(using=self._db)
+
+        user = assoc_acc.user_account
+
+        permissions_granted = user_permission.USER_CHANGE_PERMISSIONS + \
+                              user_permission.ASSOCIATE_CRUD_PERMISSIONS
+
+        for permission in get_permissions(permissions_granted):
+            user.user_permissions.add(permission)
+
+        user.refresh_from_db()
 
         return assoc_acc
 

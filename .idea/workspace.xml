@@ -2,15 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d2d7a65-81b8-4523-b87f-0044ae1f13af" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/test/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/test/test_user_api.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/user_decorators.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/user_permission.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/migrations/0002_auto_20200713_0654.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/migrations/0003_auto_20200713_0928.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/migrations/0004_auto_20200713_1348.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/signals.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/test/test_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/test/test_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/core/views.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/project_schedule/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/project_schedule/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/project_schedule/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/project_schedule/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/migrations/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/tokens.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/test/test_user_api.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/test/test_user_api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +45,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.externalDependencies" />
   </component>
   <component name="RecentsManager">
@@ -61,6 +70,10 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="requirements.txt" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="184" y="113" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595867212851">
+      <screen x="0" y="0" width="1440" height="900" />
+    </state>
+    <state x="184" y="113" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1595867212851" />
     <state x="473" y="260" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1594226090547">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
@@ -73,9 +86,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="524" y="374" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1440.900@0.0.1440.900" timestamp="1594363281501" />
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1594623158366">
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup" timestamp="1595082221544">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1594623158366" />
+    <state x="385" y="196" width="670" height="676" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1595082221544" />
   </component>
 </project>

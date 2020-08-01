@@ -2,6 +2,7 @@ Django>=3.0.0,<3.1.0
 djangorestframework>=3.11.0,<3.12.0
 psycopg2>=2.7.0,<2.8.0
 Pillow>=7.1.0,<7.2
+djoser>=2.0.0,<2.1.0
 
 faker>=4.1.0,<4.2.0
 

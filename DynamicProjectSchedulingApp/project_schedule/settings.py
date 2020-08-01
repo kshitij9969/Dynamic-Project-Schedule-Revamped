@@ -110,6 +110,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'user.tokens.OrgAccountTokenAuthentication',
+)
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
@@ -135,5 +140,3 @@ MEDIA_ROOT = '/vol/web/media'
 STATIC_ROOT = '/vol/web/static'
 
 AUTH_USER_MODEL = 'core.User'
-
-
