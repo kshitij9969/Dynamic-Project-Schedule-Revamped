@@ -1,6 +1,7 @@
 from rest_framework import (generics, permissions, status)
 from rest_framework.authtoken.views import ObtainAuthToken, APIView
 from rest_framework.response import Response
+from rest_framework import mixins
 
 from user.serializers import (UserSerializer, AuthTokenSerializer,
                               OrganisationAccountSerializer,
@@ -18,15 +19,15 @@ from . import user_permission
 # Create your views here.
 
 
-class CreateUserView(generics.CreateAPIView):
-    """
-    View for creating user
-    """
+# class CreateUserView(generics.CreateAPIView):
+#     """
+#     View for creating user
+#     """
+#
+#     serializer_class = UserSerializer
 
-    serializer_class = UserSerializer
 
-
-class CreateTokenView(ObtainAuthToken):
+class LoginView(ObtainAuthToken):
     """
     View for creating token for user
     """
@@ -68,20 +69,20 @@ class LogoutView(APIView):
         return Response("User successfully logged out!")
 
 
-class ManageUserView(generics.RetrieveUpdateAPIView):
-    """
-    View to get a user profile
-    """
-    serializer_class = UserSerializer
-    authentication_classes = {tokens.OrgAccountTokenAuthentication}
-    permission_classes = {permissions.IsAuthenticated}
-
-    def get_object(self):
-        """
-        Fetch the profile of user, if authenticated
-        :return: User object
-        """
-        return self.request.user
+# class ManageUserView(generics.RetrieveUpdateAPIView):
+#     """
+#     View to get a user profile
+#     """
+#     serializer_class = UserSerializer
+#     authentication_classes = {tokens.OrgAccountTokenAuthentication}
+#     permission_classes = {permissions.IsAuthenticated}
+#
+#     def get_object(self):
+#         """
+#         Fetch the profile of user, if authenticated
+#         :return: User object
+#         """
+#         return self.request.user
 
 
 class CreateOrganisationAccountView(generics.CreateAPIView):
@@ -155,3 +156,45 @@ class ManageAssociateAccountView(generics.RetrieveUpdateAPIView):
         :return: None
         """
         return models.AssociateAccount.objects.filter(user_account=self.request.user).first()
+
+
+class HomePageView(APIView):
+    """
+    View to handle homepage
+    """
+    authentication_classes = {tokens.OrgAccountTokenAuthentication}
+    permission_classes = {permissions.IsAuthenticated,}
+
+    def get(self, request):
+        """
+        Handles HTTP GET request
+        :param request: Request object
+        :return: Response object
+        """
+        response = {}
+        try:
+
+            if hasattr(request.user, 'organisationaccount'):
+                org_account = request.user.organisationaccount
+                org_serializer = OrganisationAccountSerializer(org_account)
+                user_serializer = UserSerializer(request.user)
+                org_serializer.data.pop('user_account')
+                print(org_serializer.data)
+                response = {**user_serializer.data}
+                response.update(**org_serializer.data)
+
+                managers = org_account.manageraccount_set.all()
+
+                for manager in managers:
+                    manager_serializer = ManagerAccountSerializer(manager)
+                pass
+
+            if hasattr(request.user, 'manageraccount'):
+                pass
+
+            if hasattr(request.user, 'associateaccount'):
+                pass
+
+        except Exception as e:
+            pass
+
