@@ -90,26 +90,7 @@ class ManagerPermissions(permissions.BasePermission):
                                               prepend_app_name('core', ASSOCIATE_CRUD_PERMISSIONS) +
                                               prepend_app_name('core', USER_CHANGE_PERMISSIONS))
 
-        is_allowed = False
-        print(vars(request._request))
-        print(type(request))
-        if request._request.method == 'POST':
-            username = request.data.get('user_account')['username']
-
-            if hasattr(request.user, 'manageraccount') and request.user.username == username:
-                is_allowed = True
-
-            if hasattr(request.user, 'organisationaccount'):
-                manager_acc = models.User.objects.filter(username=username).first().manageraccount
-                if manager_acc in request.user.organisationaccount.manageraccount_set.all():
-                    is_allowed = True
-
-            print(request.data)
-            del request.data.get('user_account')['username']
-
-            print(request.data)
-            return True if has_permissions and is_allowed \
-                else False
+        return True if has_permissions else False
         
         # return True if the logged in user has permissions as well the hierarchical integrity is maintained
 

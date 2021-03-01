@@ -14,7 +14,10 @@ from pathlib import Path
 
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import dj_database_url
+
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 
 
@@ -78,16 +81,19 @@ WSGI_APPLICATION = 'project_schedule.wsgi.application'
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.environ.get('DB_HOST'),
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASS'),
-        'TEST': {
-            'NAME': 'dpsa_db',
-        }
-    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'HOST': os.environ.get('DB_HOST'),
+    #     'NAME': os.environ.get('DB_NAME'),
+    #     'USER': os.environ.get('DB_USER'),
+    #     'PASSWORD': os.environ.get('DB_PASS'),
+    #     'TEST': {
+    #         'NAME': 'dpsa_db',
+    #     }
+    # }
+    'default': dj_database_url.config(
+        default=dj_database_url.config('DATABASE_URL')
+    )
 }
 
 
@@ -111,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES':(
-        'user.tokens.OrgAccountTokenAuthentication',
+        'user.tokens.MultiTokenAuthentication',
 )
 }
 

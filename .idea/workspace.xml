@@ -2,9 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d2d7a65-81b8-4523-b87f-0044ae1f13af" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/project_schedule/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/project_schedule/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/serializers.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/test/test_apis.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/test/test_apis.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/tokens.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/tokens.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/user_permission.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/user_permission.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/Procfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/runtime.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/runtime.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +29,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/DynamicProjectSchedulingApp" />
   </component>
   <component name="ProjectId" id="1dRzaY8v90UgCMEpPuwsNvInk5H" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -37,6 +47,7 @@
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/DynamicProjectSchedulingApp" />
+      <recent name="$PROJECT_DIR$/DynamicProjectSchedulingApp/project_schedule" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -60,10 +71,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="184" y="113" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1440.900@0.0.1440.900" timestamp="1595867212851" />
-    <state x="473" y="260" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1594226090547">
+    <state x="473" y="260" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1596617578328">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="473" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1594226090547" />
+    <state x="473" y="260" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900@0.0.1440.900" timestamp="1596617578328" />
     <state width="500" height="445" key="SwitcherDM" timestamp="1594464147445">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

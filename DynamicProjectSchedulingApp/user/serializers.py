@@ -186,17 +186,7 @@ class AssociateAccountSerializer(serializers.ModelSerializer):
         :param validated_data: validated data(OrganisationAccount fields)
         :return: OrganisationAccount object
         """
-        user_data = validated_data.pop('user_account')
-        user_account = UserSerializer.create(UserSerializer(), validated_data=user_data)
-
-        manager_account = models.ManagerAccount.objects.\
-            filter(user_account=self.context['request'].user.id).first()
-
-        return models.ManagerAccount.objects.create_manager_account(
-            user_account=user_account,
-            belongs_to=manager_account.belongs_to,
-            employee_id=validated_data['employee_id']
-        )
+        pass
 
     def update(self, instance, validated_data):
         """
@@ -205,4 +195,14 @@ class AssociateAccountSerializer(serializers.ModelSerializer):
         :param validated_data: validated data(OrganisationAccount fields)
         :return: OrganisationAccount object
         """
-        pass
+        user_data = validated_data.pop('user_account')
+        UserSerializer.update(UserSerializer(),
+                              instance=self.context['request'].user,
+                              validated_data=user_data)
+
+        for (key, value) in validated_data.items():
+            setattr(instance, key, value)
+
+        instance.save()
+
+        return instance

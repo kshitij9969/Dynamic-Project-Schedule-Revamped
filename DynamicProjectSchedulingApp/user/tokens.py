@@ -24,7 +24,7 @@ class MultiToken(RestToken):
         unique_together = (("user", "device_identifier"),)
 
 
-class OrgAccountTokenAuthentication(TokenAuthentication):
+class MultiTokenAuthentication(TokenAuthentication):
     """
     Handles token authentication for OrganisationAccount
     Note: All authentications are done using User model credentials(username and password),
@@ -49,10 +49,19 @@ class OrgAccountTokenAuthentication(TokenAuthentication):
         utc_now = datetime.datetime.utcnow()
         utc_now = utc_now.replace(tzinfo=pytz.utc)
 
-        if token.created < utc_now - datetime.timedelta(seconds=60):
-            token.delete()
-            raise AuthenticationFailed("Token expired!")
+        if hasattr(token.user, 'organisationaccount'):
+            if token.created < utc_now - datetime.timedelta(hours=2):
+                token.delete()
+                raise AuthenticationFailed("Token expired!")
+
+        if hasattr(token.user, 'manageraccount'):
+            if token.created < utc_now - datetime.timedelta(hours=24):
+                token.delete()
+                raise AuthenticationFailed("Token expired!")
+
+        if hasattr(token.user, 'associateaccount'):
+            if token.created < utc_now - datetime.timedelta(hours=24):
+                token.delete()
+                raise AuthenticationFailed("Token expired!")
 
         return token.user, token
-
-
