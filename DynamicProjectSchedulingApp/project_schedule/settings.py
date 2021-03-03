@@ -81,19 +81,19 @@ WSGI_APPLICATION = 'project_schedule.wsgi.application'
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'HOST': os.environ.get('DB_HOST'),
-    #     'NAME': os.environ.get('DB_NAME'),
-    #     'USER': os.environ.get('DB_USER'),
-    #     'PASSWORD': os.environ.get('DB_PASS'),
-    #     'TEST': {
-    #         'NAME': 'dpsa_db',
-    #     }
-    # }
-    'default': dj_database_url.config(
-        default=dj_database_url.config('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('DB_HOST'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
+        'TEST': {
+            'NAME': 'dpsa_db',
+        }
+    }
+    # 'default': dj_database_url.config(
+    #     default=dj_database_url.config('DATABASE_URL')
+    # )
 }
 
 
