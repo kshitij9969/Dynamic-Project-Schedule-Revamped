@@ -1,7 +1,17 @@
 # Dynamic-Project-Schedule-Revamped
 Source code for Django backend of Dynamic Project Schedule App.
 
-What does the app do?
+## Technologies used
+* Python 3.8.1
+* Docker 2.3.0.5(48029)
+
+## Python libraries used
+* Django
+* Django-rest-framework
+* Pillow
+* Faker
+
+What does the app do?</br>
 After completion, the app should allow you to register your organisation using which you can get your managers and associates registered. Post registration manager can create a project and add or remove associates. Any associate or manager(working on the project) will be able to add comments about what they did for the day and everyone can see the total project progress. Screenshots of the final app is attached 
 
 * The development of this app follows TDD(Test Driven Development) principles.
