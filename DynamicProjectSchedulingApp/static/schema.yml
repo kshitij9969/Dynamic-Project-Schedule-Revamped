@@ -1,0 +1,1049 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /api/user/logout/:
+    get:
+      operationId: listLogouts
+      description: 'Handles HTTP GET request
+
+        :param request: Request object
+
+        :return:'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+  /api/user/homepage/:
+    get:
+      operationId: listHomePages
+      description: 'Handles HTTP GET request
+
+        :param request: Request object
+
+        :return: Response object'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+  /api/user/get_associate_list/:
+    get:
+      operationId: listGetAssociateListApis
+      description: 'Handles HTTP GET request
+
+        :param request: Request object
+
+        :return: Response object'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+  /api/user/get_manager_list/:
+    get:
+      operationId: listGetManagerListApis
+      description: 'Handles HTTP GET method
+
+        :param request: Request object
+
+        :return: Response object'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+  /api/user/get_my_profile/:
+    get:
+      operationId: listGetMyProfileApis
+      description: 'Handles HTTP GET request
+
+        :param request: Request object
+
+        :return: Response object'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: {}
+          description: ''
+  /api/user/login/:
+    post:
+      operationId: CreateLogin
+      description: 'Handles HTTP POST request
+
+        :param request: request object
+
+        :param args:
+
+        :param kwargs:
+
+        :return:'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/user/create_org/:
+    post:
+      operationId: CreateOrganisationAccount
+      description: View for creating OrganisationAccount object
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id001
+              properties:
+                user_account:
+                  properties:
+                    username:
+                      type: string
+                      maxLength: 100
+                    full_name:
+                      type: string
+                      maxLength: 100
+                    nick_name:
+                      type: string
+                      nullable: true
+                      maxLength: 50
+                    email:
+                      type: string
+                      format: email
+                      maxLength: 200
+                    password:
+                      type: string
+                      writeOnly: true
+                      maxLength: 128
+                      minLength: 8
+                  required:
+                  - full_name
+                  - email
+                  - password
+                  type: object
+                industry:
+                  type: string
+                  maxLength: 50
+                country_code:
+                  type: string
+                  maxLength: 10
+                contact_no:
+                  type: string
+                  maxLength: 30
+                address_line_one:
+                  type: string
+                  maxLength: 30
+                address_line_two:
+                  type: string
+                  nullable: true
+                  maxLength: 30
+                address_line_three:
+                  type: string
+                  nullable: true
+                  maxLength: 40
+                country:
+                  type: string
+                  maxLength: 50
+                province_state:
+                  type: string
+                  maxLength: 50
+                city:
+                  type: string
+                  maxLength: 30
+              required:
+              - user_account
+              - industry
+              - country_code
+              - contact_no
+              - address_line_one
+              - country
+              - province_state
+              - city
+          application/x-www-form-urlencoded:
+            schema: *id001
+          multipart/form-data:
+            schema: *id001
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user_account:
+                    properties:
+                      username:
+                        type: string
+                        maxLength: 100
+                      full_name:
+                        type: string
+                        maxLength: 100
+                      nick_name:
+                        type: string
+                        nullable: true
+                        maxLength: 50
+                      email:
+                        type: string
+                        format: email
+                        maxLength: 200
+                      password:
+                        type: string
+                        writeOnly: true
+                        maxLength: 128
+                        minLength: 8
+                    required:
+                    - full_name
+                    - email
+                    - password
+                    type: object
+                  industry:
+                    type: string
+                    maxLength: 50
+                  country_code:
+                    type: string
+                    maxLength: 10
+                  contact_no:
+                    type: string
+                    maxLength: 30
+                  address_line_one:
+                    type: string
+                    maxLength: 30
+                  address_line_two:
+                    type: string
+                    nullable: true
+                    maxLength: 30
+                  address_line_three:
+                    type: string
+                    nullable: true
+                    maxLength: 40
+                  country:
+                    type: string
+                    maxLength: 50
+                  province_state:
+                    type: string
+                    maxLength: 50
+                  city:
+                    type: string
+                    maxLength: 30
+                required:
+                - user_account
+                - industry
+                - country_code
+                - contact_no
+                - address_line_one
+                - country
+                - province_state
+                - city
+          description: ''
+  /api/user/create_manager/:
+    post:
+      operationId: CreateManagerAccount
+      description: View to handle creation of ManagerAccount objects
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id002
+              properties:
+                user_account:
+                  properties:
+                    username:
+                      type: string
+                      maxLength: 100
+                    full_name:
+                      type: string
+                      maxLength: 100
+                    nick_name:
+                      type: string
+                      nullable: true
+                      maxLength: 50
+                    email:
+                      type: string
+                      format: email
+                      maxLength: 200
+                    password:
+                      type: string
+                      writeOnly: true
+                      maxLength: 128
+                      minLength: 8
+                  required:
+                  - full_name
+                  - email
+                  - password
+                  type: object
+                employee_id:
+                  type: string
+                  maxLength: 10
+              required:
+              - user_account
+              - employee_id
+          application/x-www-form-urlencoded:
+            schema: *id002
+          multipart/form-data:
+            schema: *id002
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user_account:
+                    properties:
+                      username:
+                        type: string
+                        maxLength: 100
+                      full_name:
+                        type: string
+                        maxLength: 100
+                      nick_name:
+                        type: string
+                        nullable: true
+                        maxLength: 50
+                      email:
+                        type: string
+                        format: email
+                        maxLength: 200
+                      password:
+                        type: string
+                        writeOnly: true
+                        maxLength: 128
+                        minLength: 8
+                    required:
+                    - full_name
+                    - email
+                    - password
+                    type: object
+                  employee_id:
+                    type: string
+                    maxLength: 10
+                required:
+                - user_account
+                - employee_id
+          description: ''
+  /api/user/create_associate/:
+    post:
+      operationId: CreateCreateAssociateAccount
+      description: 'Handles HTTP POST request
+
+        :param request: Request object
+
+        :return: Response'
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/user/change_password/:
+    post:
+      operationId: CreateResetPasswordApi
+      description: View to handle password reset
+      parameters: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: ''
+  /api/user/me_org/:
+    put:
+      operationId: UpdateOrganisationAccount
+      description: View to handle retrieval or updation of OrganisationAccount objects
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id003
+              properties:
+                user_account:
+                  properties:
+                    username:
+                      type: string
+                      maxLength: 100
+                    full_name:
+                      type: string
+                      maxLength: 100
+                    nick_name:
+                      type: string
+                      nullable: true
+                      maxLength: 50
+                    email:
+                      type: string
+                      format: email
+                      maxLength: 200
+                    password:
+                      type: string
+                      writeOnly: true
+                      maxLength: 128
+                      minLength: 8
+                  required:
+                  - full_name
+                  - email
+                  - password
+                  type: object
+                industry:
+                  type: string
+                  maxLength: 50
+                country_code:
+                  type: string
+                  maxLength: 10
+                contact_no:
+                  type: string
+                  maxLength: 30
+                address_line_one:
+                  type: string
+                  maxLength: 30
+                address_line_two:
+                  type: string
+                  nullable: true
+                  maxLength: 30
+                address_line_three:
+                  type: string
+                  nullable: true
+                  maxLength: 40
+                country:
+                  type: string
+                  maxLength: 50
+                province_state:
+                  type: string
+                  maxLength: 50
+                city:
+                  type: string
+                  maxLength: 30
+              required:
+              - user_account
+              - industry
+              - country_code
+              - contact_no
+              - address_line_one
+              - country
+              - province_state
+              - city
+          application/x-www-form-urlencoded:
+            schema: *id003
+          multipart/form-data:
+            schema: *id003
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user_account:
+                    properties:
+                      username:
+                        type: string
+                        maxLength: 100
+                      full_name:
+                        type: string
+                        maxLength: 100
+                      nick_name:
+                        type: string
+                        nullable: true
+                        maxLength: 50
+                      email:
+                        type: string
+                        format: email
+                        maxLength: 200
+                      password:
+                        type: string
+                        writeOnly: true
+                        maxLength: 128
+                        minLength: 8
+                    required:
+                    - full_name
+                    - email
+                    - password
+                    type: object
+                  industry:
+                    type: string
+                    maxLength: 50
+                  country_code:
+                    type: string
+                    maxLength: 10
+                  contact_no:
+                    type: string
+                    maxLength: 30
+                  address_line_one:
+                    type: string
+                    maxLength: 30
+                  address_line_two:
+                    type: string
+                    nullable: true
+                    maxLength: 30
+                  address_line_three:
+                    type: string
+                    nullable: true
+                    maxLength: 40
+                  country:
+                    type: string
+                    maxLength: 50
+                  province_state:
+                    type: string
+                    maxLength: 50
+                  city:
+                    type: string
+                    maxLength: 30
+                required:
+                - user_account
+                - industry
+                - country_code
+                - contact_no
+                - address_line_one
+                - country
+                - province_state
+                - city
+          description: ''
+    patch:
+      operationId: PartialUpdateOrganisationAccount
+      description: View to handle retrieval or updation of OrganisationAccount objects
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id004
+              properties:
+                user_account:
+                  properties:
+                    username:
+                      type: string
+                      maxLength: 100
+                    full_name:
+                      type: string
+                      maxLength: 100
+                    nick_name:
+                      type: string
+                      nullable: true
+                      maxLength: 50
+                    email:
+                      type: string
+                      format: email
+                      maxLength: 200
+                    password:
+                      type: string
+                      writeOnly: true
+                      maxLength: 128
+                      minLength: 8
+                  required:
+                  - full_name
+                  - email
+                  - password
+                  type: object
+                industry:
+                  type: string
+                  maxLength: 50
+                country_code:
+                  type: string
+                  maxLength: 10
+                contact_no:
+                  type: string
+                  maxLength: 30
+                address_line_one:
+                  type: string
+                  maxLength: 30
+                address_line_two:
+                  type: string
+                  nullable: true
+                  maxLength: 30
+                address_line_three:
+                  type: string
+                  nullable: true
+                  maxLength: 40
+                country:
+                  type: string
+                  maxLength: 50
+                province_state:
+                  type: string
+                  maxLength: 50
+                city:
+                  type: string
+                  maxLength: 30
+          application/x-www-form-urlencoded:
+            schema: *id004
+          multipart/form-data:
+            schema: *id004
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user_account:
+                    properties:
+                      username:
+                        type: string
+                        maxLength: 100
+                      full_name:
+                        type: string
+                        maxLength: 100
+                      nick_name:
+                        type: string
+                        nullable: true
+                        maxLength: 50
+                      email:
+                        type: string
+                        format: email
+                        maxLength: 200
+                      password:
+                        type: string
+                        writeOnly: true
+                        maxLength: 128
+                        minLength: 8
+                    required:
+                    - full_name
+                    - email
+                    - password
+                    type: object
+                  industry:
+                    type: string
+                    maxLength: 50
+                  country_code:
+                    type: string
+                    maxLength: 10
+                  contact_no:
+                    type: string
+                    maxLength: 30
+                  address_line_one:
+                    type: string
+                    maxLength: 30
+                  address_line_two:
+                    type: string
+                    nullable: true
+                    maxLength: 30
+                  address_line_three:
+                    type: string
+                    nullable: true
+                    maxLength: 40
+                  country:
+                    type: string
+                    maxLength: 50
+                  province_state:
+                    type: string
+                    maxLength: 50
+                  city:
+                    type: string
+                    maxLength: 30
+                required:
+                - user_account
+                - industry
+                - country_code
+                - contact_no
+                - address_line_one
+                - country
+                - province_state
+                - city
+          description: ''
+  /api/user/me_manager/:
+    put:
+      operationId: UpdateManagerAccount
+      description: View to handle updation and retrieval or ManagerAccount objects
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id005
+              properties:
+                user_account:
+                  properties:
+                    username:
+                      type: string
+                      maxLength: 100
+                    full_name:
+                      type: string
+                      maxLength: 100
+                    nick_name:
+                      type: string
+                      nullable: true
+                      maxLength: 50
+                    email:
+                      type: string
+                      format: email
+                      maxLength: 200
+                    password:
+                      type: string
+                      writeOnly: true
+                      maxLength: 128
+                      minLength: 8
+                  required:
+                  - full_name
+                  - email
+                  - password
+                  type: object
+                employee_id:
+                  type: string
+                  maxLength: 10
+              required:
+              - user_account
+              - employee_id
+          application/x-www-form-urlencoded:
+            schema: *id005
+          multipart/form-data:
+            schema: *id005
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user_account:
+                    properties:
+                      username:
+                        type: string
+                        maxLength: 100
+                      full_name:
+                        type: string
+                        maxLength: 100
+                      nick_name:
+                        type: string
+                        nullable: true
+                        maxLength: 50
+                      email:
+                        type: string
+                        format: email
+                        maxLength: 200
+                      password:
+                        type: string
+                        writeOnly: true
+                        maxLength: 128
+                        minLength: 8
+                    required:
+                    - full_name
+                    - email
+                    - password
+                    type: object
+                  employee_id:
+                    type: string
+                    maxLength: 10
+                required:
+                - user_account
+                - employee_id
+          description: ''
+    patch:
+      operationId: PartialUpdateManagerAccount
+      description: View to handle updation and retrieval or ManagerAccount objects
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id006
+              properties:
+                user_account:
+                  properties:
+                    username:
+                      type: string
+                      maxLength: 100
+                    full_name:
+                      type: string
+                      maxLength: 100
+                    nick_name:
+                      type: string
+                      nullable: true
+                      maxLength: 50
+                    email:
+                      type: string
+                      format: email
+                      maxLength: 200
+                    password:
+                      type: string
+                      writeOnly: true
+                      maxLength: 128
+                      minLength: 8
+                  required:
+                  - full_name
+                  - email
+                  - password
+                  type: object
+                employee_id:
+                  type: string
+                  maxLength: 10
+          application/x-www-form-urlencoded:
+            schema: *id006
+          multipart/form-data:
+            schema: *id006
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user_account:
+                    properties:
+                      username:
+                        type: string
+                        maxLength: 100
+                      full_name:
+                        type: string
+                        maxLength: 100
+                      nick_name:
+                        type: string
+                        nullable: true
+                        maxLength: 50
+                      email:
+                        type: string
+                        format: email
+                        maxLength: 200
+                      password:
+                        type: string
+                        writeOnly: true
+                        maxLength: 128
+                        minLength: 8
+                    required:
+                    - full_name
+                    - email
+                    - password
+                    type: object
+                  employee_id:
+                    type: string
+                    maxLength: 10
+                required:
+                - user_account
+                - employee_id
+          description: ''
+  /api/user/me_associate/:
+    put:
+      operationId: UpdateAssociateAccount
+      description: View to handle updation and retrieval of AssociateAccount objects
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id007
+              properties:
+                user_account:
+                  properties:
+                    username:
+                      type: string
+                      maxLength: 100
+                    full_name:
+                      type: string
+                      maxLength: 100
+                    nick_name:
+                      type: string
+                      nullable: true
+                      maxLength: 50
+                    email:
+                      type: string
+                      format: email
+                      maxLength: 200
+                    password:
+                      type: string
+                      writeOnly: true
+                      maxLength: 128
+                      minLength: 8
+                  required:
+                  - full_name
+                  - email
+                  - password
+                  type: object
+                employee_id:
+                  type: string
+                  maxLength: 10
+              required:
+              - user_account
+              - employee_id
+          application/x-www-form-urlencoded:
+            schema: *id007
+          multipart/form-data:
+            schema: *id007
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user_account:
+                    properties:
+                      username:
+                        type: string
+                        maxLength: 100
+                      full_name:
+                        type: string
+                        maxLength: 100
+                      nick_name:
+                        type: string
+                        nullable: true
+                        maxLength: 50
+                      email:
+                        type: string
+                        format: email
+                        maxLength: 200
+                      password:
+                        type: string
+                        writeOnly: true
+                        maxLength: 128
+                        minLength: 8
+                    required:
+                    - full_name
+                    - email
+                    - password
+                    type: object
+                  employee_id:
+                    type: string
+                    maxLength: 10
+                required:
+                - user_account
+                - employee_id
+          description: ''
+    patch:
+      operationId: PartialUpdateAssociateAccount
+      description: View to handle updation and retrieval of AssociateAccount objects
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema: &id008
+              properties:
+                user_account:
+                  properties:
+                    username:
+                      type: string
+                      maxLength: 100
+                    full_name:
+                      type: string
+                      maxLength: 100
+                    nick_name:
+                      type: string
+                      nullable: true
+                      maxLength: 50
+                    email:
+                      type: string
+                      format: email
+                      maxLength: 200
+                    password:
+                      type: string
+                      writeOnly: true
+                      maxLength: 128
+                      minLength: 8
+                  required:
+                  - full_name
+                  - email
+                  - password
+                  type: object
+                employee_id:
+                  type: string
+                  maxLength: 10
+          application/x-www-form-urlencoded:
+            schema: *id008
+          multipart/form-data:
+            schema: *id008
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  id:
+                    type: integer
+                    readOnly: true
+                  user_account:
+                    properties:
+                      username:
+                        type: string
+                        maxLength: 100
+                      full_name:
+                        type: string
+                        maxLength: 100
+                      nick_name:
+                        type: string
+                        nullable: true
+                        maxLength: 50
+                      email:
+                        type: string
+                        format: email
+                        maxLength: 200
+                      password:
+                        type: string
+                        writeOnly: true
+                        maxLength: 128
+                        minLength: 8
+                    required:
+                    - full_name
+                    - email
+                    - password
+                    type: object
+                  employee_id:
+                    type: string
+                    maxLength: 10
+                required:
+                - user_account
+                - employee_id
+          description: ''
+  /api/user/delete_organisation/:
+    delete:
+      operationId: DestroyDeleteOrganisationViewApi
+      description: 'Handles HTTP DELETE request
+
+        :param request: Request object
+
+        :return: Response object'
+      parameters: []
+      responses:
+        '204':
+          description: ''
+  /api/user/delete_manager/:
+    delete:
+      operationId: DestroyDeleteManagerViewApi
+      description: 'Handles HTTP DELETE request
+
+        :param request: Request object
+
+        :return: Response object'
+      parameters: []
+      responses:
+        '204':
+          description: ''
+  /api/user/delete_associate/:
+    delete:
+      operationId: DestroyDeleteAssociateViewApi
+      description: 'Handles HTTP DELETE request
+
+        :param request: Request object
+
+        :return: Response object'
+      parameters: []
+      responses:
+        '204':
+          description: ''

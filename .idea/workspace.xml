@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4d2d7a65-81b8-4523-b87f-0044ae1f13af" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/static/schema.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/project_schedule/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/project_schedule/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/user_permission.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/user/user_permission.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DynamicProjectSchedulingApp/project_schedule/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DynamicProjectSchedulingApp/project_schedule/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,9 +35,15 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/DynamicProjectSchedulingApp/static" />
       <recent name="$PROJECT_DIR$/DynamicProjectSchedulingApp" />
-      <recent name="$PROJECT_DIR$/DynamicProjectSchedulingApp/project_schedule" />
+      <recent name="$PROJECT_DIR$/DynamicProjectSchedulingApp/snippets/static/openapi" />
+      <recent name="$PROJECT_DIR$/DynamicProjectSchedulingApp/snippets/static" />
+      <recent name="$PROJECT_DIR$/DynamicProjectSchedulingApp/snippets" />
     </key>
   </component>
   <component name="SvnConfiguration">
